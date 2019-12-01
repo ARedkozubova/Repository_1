@@ -86,4 +86,19 @@ int slist_remove(pslist list, int value)
 
 /* For each element print in value */
 void slist_print(pslist list)
-{ }
+{ 
+	pslist_entry current = list->head;
+	if (NULL == current)
+	{
+		printf("Sorry...the list is empty.\n");
+	}
+	else
+	{
+		while (NULL != current->next)
+		{
+			printf("%d -> ", current->value);
+			current = current->next;
+		}
+	}
+
+}
