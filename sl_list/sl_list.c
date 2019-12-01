@@ -26,14 +26,12 @@ pslist slist_new(void)
 /* For each element free memory */
 /*void slist_delete(pslist list)
 {
-	pslist_entry head = list->head;
-	while (NULL != head) 
+	pslist_entry head;
+	while (NULL != (head = slist_pop(list))) //TODO: slist_pop function should be done
 	{
-		list->head = list->head->next;
 		free(head);
-		head = list->head;
-		list->list_size--;
 	}
+
 	free(list);
 }*/
 
@@ -41,7 +39,7 @@ pslist slist_new(void)
    Put at the end */
 int slist_insert(pslist list, int value)
 {
-	pslist_entry pnew = malloc(sizeof(struct slist_entry));
+	struct slist_entry *pnew = malloc(sizeof(struct slist_entry));
 	if (NULL == pnew)
 	{
 		printf("ERROR: failed allocation of memory for new element!\n");
@@ -66,7 +64,7 @@ int slist_remove(pslist list, int value)
 		return -1;
 	}
 
-	while (NULL != current)
+	while (current != NULL)
 	{
 		if (current->value == value)
 		{
@@ -84,17 +82,11 @@ int slist_remove(pslist list, int value)
 			}
 		}
 	}
-	list->list_size--;
 }
 
 /* For each element print in value */
 void slist_print(pslist list)
 { 
-	if(NULL == list)
-	{
-		printf("Sorry...the list does not exist.\n");
-		return -1;
-	}
 	pslist_entry current = list->head;
 	if (NULL == current)
 	{
