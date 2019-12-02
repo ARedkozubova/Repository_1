@@ -1,37 +1,52 @@
+/*
+ * File:  sl_tests.c
+ * Brief: testing main fuctions for single lincked list
+ * Created on 02.12.2019
+ * Author: Kasapenko Natalya
+ * (c) MIPT 2019
+ */
+
 #include <stdio.h>
 #include "sl_list.h"
+#include < assert.h > 
 
 
 /*
-test 1
-checking if the list is created
-checking if elements are inserted in the list
+* test1
+* cheking work of function slist_new()
 */
 int test1()
 {
 	pslist list;
 
 	list = slist_new();
-	printf("List created! %p\n", list);
-	slist_insert(list, 1);
-	slist_insert(list, 2);
-	slist_insert(list, 3);
-	slist_print(list);
 
-//	slist_delete(list);
-	return 0;
+	if (NULL != list)
+	{
+		printf("List created! %p\n", list);
+	}
+
+	else
+	{
+		printf("ERROR: List was not created!");
+	}
 }
 
-
-int test2 ()
+/*
+* test3
+* checking work of function slist_insert()
+*/
+int test2()
 {
 	pslist list;
 
 	list = slist_new();
 
-	slist_delete(list);
+	slist_insert(list, 1);
+	slist_insert(list, 2);
+	slist_insert(list, 3);
 
-	printf("List deleted! %p\n", list);
+	slist_print(list);
 
 	return 0;
-}
+} 
