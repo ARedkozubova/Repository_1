@@ -1,37 +1,123 @@
 /*
- * File: dl_list
- * Brief: TODO
- * Author: Anastasia Redkozubova
- * Created on: 18.11.2019
+ * File: dl_list.c
+ * Brief: Double linked list
+ * Author: Kasapenko Natalya
+ * Created on: 02.12.2019
  * (c) MIPT
 */
 
 #pragma once
-#include "pch.h"
 #include "dl_list.h"
 #include <stdio.h>
 
-LIST *list_new()
+List* list_new()
 {
-	return NULL;
+	List *NewList = (List*)malloc(sizeof(List));
+	NewList->size = 0;
+	NewList->head= NULL;
+	NewList->tail = NULL;
+	return NewList;
 }
 
-void list_delete(LIST *list)
+void list_delete(List *list)
 {
-
+	Node* current = list->head;
+	Node* next = NULL;
+	while (NULL != current) {
+		next = current->next;
+		free(current);
+		current = next;
+	}
+	free(*list);
+	list = NULL;
 }
 
-int push(LIST *list, int value)
+
+int unshift(List* list, int value)
 {
+	Node* NewNode = (Node*)malloc(sizeof(Node));
+
+	if (NULL == NewNode) 
+	{
+		printf("Error: Can't allocate memory");
+		exit(1);
+	}
+
+	NewNode->value = value;
+	NewNode->prev = NULL;
+	NewNode->next = list->head;
+
+	if (NULL != list -> head) 
+	{
+		list->head = NewNode;
+	}
+
+	if (NULL == list->tail)
+	{
+		list->tail = NewNode;
+	}
+
+	list->size++;
+
 	return 0;
 }
 
-int pop(LIST *list, LIST_ENTRY *entry)
+int shift(List* list, int* pointer)
 {
-	return 0;
+
+	if (NULL != list)
+	{
+		Node* N = (Node*)malloc(sizeof(Node));
+		N = list->head;
+		pointer = N->value;
+		return 0;
+	}
+	else
+	{
+		printf("list doesn't exist");
+		return 1;
+	}
 }
 
-int unshift(LIST *list, int value)
+int pop(List* list, int* pointer)
 {
+	if (NULL != list)
+	{
+		Node* N = (Node*)malloc(sizeof(Node));
+		N = list->tail;
+		pointer = N->value;
+		return 0;
+	}
+	else
+	{
+		printf("list doesn't exist");
+		return 1;
+	}
+} 
+
+int push(List* list, int value)
+{
+	Node* NewNode = (Node*)malloc(sizeof(Node));
+	Node* Element;
+
+	if (NULL == NewNode)
+	{
+		printf("Error: Can't allocate memory");
+		exit(1);
+	}
+	NewNode->value = value;
+	NewNode->next = NULL;
+	NewNode->prev = list->tail;
+
+	if (NULL != list->tail)
+	{
+		Element = list->tail;
+		Element->next = NewNode;
+	}
+	if (NULL == list->head)
+	{
+		list->head = NewNode;
+	}
+
 	return 0;
 }
