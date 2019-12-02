@@ -13,15 +13,15 @@ typedef struct Node* p_node;
 typedef struct _Node
 {
 	int value;
-	struct p_node* next;
-	struct p_node* prev;
+	struct Node* next;
+	struct Node* prev;
 } Node;
 
 typedef struct _List
 {
 	int size;
-	p_node* head;
-	p_node* tail;
+	Node* head;
+	Node* tail;
 } List;
 
 /*
@@ -32,8 +32,7 @@ typedef struct _List
 *		1 if list is not created
 * creates new empty lincked list
 */
-p_list list_new();
-
+List* list_new();
 /*
 * function: list_delete(List* list) deletes list and all elements in it
 * arguments: List* list (pointer to the head of the list)
@@ -41,7 +40,7 @@ p_list list_new();
 					0 if opetation successfully complited
 					1 if operation didn't successfully complited
 */
-void list_delete(p_node list);
+void list_delete(List* list);
 
 /*
 * function: push(List* list, int value) adds new element in the end of the list
@@ -51,17 +50,17 @@ void list_delete(p_node list);
 					0 if opetation successfully complited
 					1 if operation didn't successfully complited
 */
-int push(p_list list, int value);
+int push(List* list, int value);
 
 /*
 * function: pop(List* list, int value) gets the last element of the list
 * arguments: List* list (pointer to the head of the list)
-			 int pointer (pointer where to push popped element)
+			 int* pointer (pointer where to push popped element)
 * returning values:
 					0 if opetation successfully complited
 					1 if operation didn't successfully complited
 */
-int pop(p_node* list, int* pointer);
+int pop(List* list, int* pointer);
 
 /*
 * function: unshift(List* list, int value) adds new element in the beginning of the list
@@ -71,14 +70,14 @@ int pop(p_node* list, int* pointer);
 					0 if opetation successfully complited
 					1 if operation didn't successfully complited
 */
-int unshift(p_node* list, int value);
+int unshift(List* list, int value);
 
 /*
-* function: shift(List* list, int value) gets the first element of the list
+* function: shift(List* list, int* pointer) gets the first element of the list
 * arguments: List* list (pointer to the head of the list)
 			 int* pointer (address where to put the element)
 * returning values:
 					0 if opetation successfully complited
 					1 if operation didn't successfully complited
 */
-int shift(p_node* list, int* pointer);
+int shift(List* list, int* pointer);
