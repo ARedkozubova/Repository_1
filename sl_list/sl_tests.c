@@ -33,8 +33,8 @@ int test1()
 }
 
 /*
-* test3
-* checking work of function slist_insert()
+* test2
+* checking work of function slist_insert() and slist_print()
 */
 int test2()
 {
@@ -50,3 +50,27 @@ int test2()
 
 	return 0;
 } 
+
+/*
+* test4
+* cheking work of function slist_remove()
+*/
+int test4()
+{
+	pslist list;
+
+	list = slist_new();
+
+	slist_insert(list, 1);
+	slist_insert(list, 2);
+	slist_insert(list, 3);
+
+	printf("\ntest4:\n");
+
+	slist_remove(list,2);
+
+	return 0;
+}
+
+
+
