@@ -91,11 +91,12 @@ void slist_print(pslist list)
 	}
 	else
 	{
-		while (NULL != current)
+		while (NULL != current->next)
 		{
 			printf("%d -> ", current->value);
 			current = current->next;
 		}
+		printf("%d\n", current->value);
 	}
 
 }
