@@ -81,3 +81,17 @@ int unshift(List* list, int value);
 					1 if operation didn't successfully complited
 */
 int shift(List* list, int* pointer);
+
+/*
+* function: print(List* list) prints list
+* arguments: List* list (pointer to the head of the list)
+* returning values: none
+*/
+void print(List* list);
+
+/*
+* function: print(List* list) prints list in reverse
+* arguments: List* list (pointer to the head of the list)
+* returning values: none
+*/
+void reverseprint(List* list);
