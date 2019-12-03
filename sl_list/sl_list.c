@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include "sl_list.h"
 
-/* Create new empty list */
+ /* Create new empty list */
 pslist slist_new(void)
 {
 	pslist list = malloc(sizeof(struct slist));
@@ -66,19 +66,22 @@ int slist_remove(pslist list, int value)
 		return -1;
 	}
 
-	while (current != NULL)
+	while (NULL != current)
 	{
 		if (current->value == value)
 		{
-			while (prev->next != current)
+			if (current == list->head)
+				list->head = current->next;
+			else
 			{
-				prev = prev->next;
+				while (prev->next != current)
+					prev = prev->next;
+				prev->next = current->next;
 			}
-			prev->next = current->next;
-			return current->value;
 		}
 		current = current->next;
 	}
+	return 0;
 }
 
 /* For each element print in value */
