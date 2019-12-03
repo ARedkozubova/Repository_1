@@ -23,6 +23,14 @@ int find_element(List *list, int value)
 	return flag;
 }
 
+void fill_list(List *list, int number)
+{
+	int i = 0;
+	for (i = 0; i < number; i++)
+	{
+		push(list, i);
+	}
+}
 
 int test_new()
 {
@@ -54,12 +62,9 @@ int test_new()
 int test_push()
 {
 	List *list;
-	list = list_new();
 	int i = 0, count = 0, flag = 1;
-	for (i = 0; i < 20; i++)
-	{
-		push(list, i);
-	}
+	list = list_new;
+	fill_list(list, 20);
 	for (i = 0; i < 20; i++)
 	{
 		if (find_element(list, i))
@@ -77,9 +82,43 @@ int test_push()
 		printf("ERROR in test_push: amount of element is not equal size of list!\n");
 		return -2;
 	}
-	else
+	printf("PASS: test_push\n");
+	return 0;
+}
+
+int test_delete()
+{
+	List *list1 = list_new, *list2 = list_new;
+	fill_list(list1, 20);
+	list_delete(list1);
+	list_delete(list2);
+	return 0;
+}
+
+int test_pop()
+{
+	List *list = list_new;
+	int *pointer = NULL, size = 0;
+	pop(list, pointer);
+	if (pointer != NULL)
 	{
-		printf("PASS: test_push\n");
-		return 0;
+		printf("ERROR in test_pop: smth wrong with deleting from empty list!\n");
+		return -1;
 	}
+	fill_list(list, 20);
+	size = 20;
+	pop(list, pointer);
+	if (NULL == pointer)
+	{
+		printf("ERROR in test_pop: pointer is NULL!\n");
+		return -2;
+	}
+	if (list->size != size - 1)
+	{
+		printf("ERROR in test_pop: wrong size of list!\n");
+		return -3;
+	}
+	printf("PASS: test_pop\n");
+	return 0;
+
 }
