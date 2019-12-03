@@ -25,7 +25,17 @@ pslist slist_new(void)
 
 /* For each element free memory */
 void slist_delete(pslist list)
-{}
+{
+	pslist_entry head = list->head;
+	while (NULL != head)
+	{
+		list->head = list->head->next;
+		free(head);
+		head = list->head;
+		list->list_size--;
+	}
+	free(list);
+}
 
 /* Allocate the element
    Put at the end */
@@ -49,14 +59,14 @@ int slist_insert(pslist list, int value)
 int slist_remove(pslist list, int value)
 {
 	pslist_entry current = list->head;
-	pslist_entry prev = NULL;
+	pslist_entry prev = list->head;
 	if (NULL == current)
 	{
 		printf("ERROR: removing element from empty list!\n");
 		return -1;
 	}
 
-	while (NULL != current)
+	while (current != NULL)
 	{
 		if (current->value == value)
 		{
@@ -64,15 +74,10 @@ int slist_remove(pslist list, int value)
 			{
 				prev = prev->next;
 			}
-
 			prev->next = current->next;
-			free(current);
-			if (NULL != current)
-			{
-				printf("ERROR: memory was not freed!\n");
-				return -2;
-			}
+			return current->value;
 		}
+		current = current->next;
 	}
 }
 
@@ -86,12 +91,11 @@ void slist_print(pslist list)
 	}
 	else
 	{
-		while (NULL != current->next)
+		while (NULL != current)
 		{
 			printf("%d -> ", current->value);
 			current = current->next;
 		}
-		printf("%d\n", current->value);
 	}
 
 }
