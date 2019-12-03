@@ -121,3 +121,20 @@ int push(List* list, int value)
 
 	return 0;
 }
+
+void reverse(List* list)
+{
+	Node* current; 
+	Node* tmp;
+	current = list->head;
+		while (current != NULL)
+		{
+			tmp = current->next;
+			current->next = current->prev;
+			current->prev = tmp;
+			current = current->prev;
+		}
+	current = list->head;
+	list->head = list->tail;
+	list->tail = current;
+}
