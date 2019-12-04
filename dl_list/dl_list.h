@@ -1,27 +1,24 @@
 #pragma once
 /*
- * File: dl_list.h
+ * File: dl_list
  * Brief: Double linked list header
  * Author: Kasapenko Natalya
  * Created on: 02.12.2019
  * (c) MIPT
 */
 
-typedef struct List* p_list;
-typedef struct Node* p_node;
-
 typedef struct _Node
 {
 	int value;
-	struct Node* next;
-	struct Node* prev;
+	struct _Node* next;
+	struct _Node* prev;
 } Node;
 
 typedef struct _List
 {
 	int size;
-	Node* head;
-	Node* tail;
+	struct Node* head;
+	struct Node* tail;
 } List;
 
 /*
@@ -40,7 +37,7 @@ List* list_new();
 					0 if opetation successfully complited
 					1 if operation didn't successfully complited
 */
-void list_delete(List* list);
+int list_delete(List* list);
 
 /*
 * function: push(List* list, int value) adds new element in the end of the list
@@ -53,8 +50,8 @@ void list_delete(List* list);
 int push(List* list, int value);
 
 /*
-* function: pop(List* list, int value) gets the last element of the list
-* arguments: List* list (pointer to the head of the List)
+* function: pop(List* list, int value) gets the Last element of the list
+* arguments: List* list (pointer to the head of the list)
 			 int* pointer (pointer where to push popped element)
 * returning values:
 					0 if opetation successfully complited
