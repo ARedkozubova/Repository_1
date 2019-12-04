@@ -59,3 +59,23 @@ int test_unshift();
 */
 int test_shift();
 
+/*
+* Test for cheking function print
+*/
+int test_print();
+
+/*
+* Test for cheking function reverseprint
+*/
+int test_reverse_print();
+
+/*
+* Test for cheking function reverse
+*/
+int test_reverse();
+
+/*
+* function that run all tests
+*/
+int run_all_tests();
+

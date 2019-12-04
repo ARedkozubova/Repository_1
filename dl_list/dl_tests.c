@@ -190,3 +190,70 @@ int test_shift()
 	printf("PASS: test_shift\n");
 	return 0;
 }
+
+int test_print()
+{
+	List *list = list_new;
+	fill_list(list, 25);
+	//print(list);
+	printf("FAIL: test_print\n");
+	return 0;
+}
+
+int test_reverse_print()
+{
+	List *list = list_new;
+	fill_list(list, 25);
+	//reverseprint(list);
+	printf("FAIL: test_reverse_print\n");
+	return 0;
+}
+
+int test_reverse()
+{
+	List *list = list_new, *list_check = list_new;
+	reverse(list);
+	if (list != NULL)
+	{
+		printf("ERROR in test_reverse: wrong reverse of empty list!\n");
+		return -1;
+	}
+	fill_list(list, 25);
+	fill_list(list_check, 25);
+	reverse(list);
+	if (list_check->size != list->size)
+	{
+		printf("ERROR in test_reverse: wrong size of reversed list!\n");
+		return -2;
+	}
+	int flag = 1;
+	Node *current_check = list_check->head;
+	Node *current = list->tail;
+	while (current != list_check->tail)
+	{
+		if (current != current_check)
+			flag = 0;
+		current_check = current_check->next;
+		current = current->prev;
+	}
+	if (!flag)
+	{
+		printf("ERROR in test_reverse: elements were not reversed correctly!\n");
+		return -3;
+	}
+	printf("PASS: test_reverse\n");
+	return 0;
+}
+
+int run_all_tests()
+{
+	test_new();
+	test_push();
+	test_delete();
+	test_pop();
+	test_unshift();
+	test_shift();
+	test_print();
+	test_reverse_print();
+	test_reverse();
+}
