@@ -30,22 +30,32 @@ void fill_list(List *list, int number);
 int find_element(List *list, int value);
 
 /*
-* Test for checking function list_new
+* Test for cheking function list_new
 */
 int test_new();
 
 /*
-* Test for checking function push
+* Test for cheking function push
 */
 int test_push();
 
 /*
-* Test for checking function list_delete
+* Test for cheking function list_delete
 */
 int test_delete();
 
 /*
-* Test for checking function pop
+* Test for cheking function pop
 */
 int test_pop();
+
+/*
+* Test for cheking function unshift
+*/
+int test_unshift();
+
+/*
+* Test for cheking function shift
+*/
+int test_shift();
 

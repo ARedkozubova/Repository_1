@@ -107,6 +107,7 @@ int test_pop()
 	}
 	fill_list(list, 20);
 	size = 20;
+	Node *tail = list->tail;
 	pop(list, pointer);
 	if (NULL == pointer)
 	{
@@ -118,7 +119,74 @@ int test_pop()
 		printf("ERROR in test_pop: wrong size of list!\n");
 		return -3;
 	}
+	if (find_element(list, tail) == 0)
+	{
+		printf("ERROR in test_pop: element was not deleted!\n");
+		return -4;
+	}
+	if (pointer != tail)
+	{
+		printf("ERROR in test_pop: pointer is wrong!\n");
+		return -5;
+	}
 	printf("PASS: test_pop\n");
 	return 0;
+}
 
+int test_unshift()
+{
+	List *list = list_new;
+	unshift(list, 15);
+	if (list->head->value != 15)
+	{
+		printf("ERROR in test_unshift: element was not added to the list!\n");
+		return -1;
+	}
+	if (list->size != 1)
+	{
+		printf("ERROR in test_unshift: wrong size of the list!\n");
+		return -2;
+	}
+	fill_list(list, 20);
+	unshift(list, 30);
+	int size = 20;
+	if (list->head->value != 30)
+	{
+		printf("ERROR in test_unshift: element was not added to the list!\n");
+		return -1;
+	}
+	if (list->size != size + 1)
+	{
+		printf("ERROR in test_unshift: wrong size of the list!\n");
+		return -2;
+	}
+	printf("PASS: test_unshift\n");
+	return 0;
+}
+
+int test_shift()
+{
+	List *list = list_new;
+	int *pointer = NULL;
+	if (!shift(list, pointer))
+	{
+		printf("ERROR in test_shift: fail to process deleting from empty list!\n");
+		return -1;
+	}
+	fill_list(list, 20);
+	int size = 20;
+	int *check_pointer = list->head;
+	shift(list, pointer);
+	if (pointer != check_pointer)
+	{
+		printf("ERROR in test_shift: pointer does not contain the right value!\n");
+		return -2;
+	}
+	if (list->size != size - 1)
+	{
+		printf("ERROR in test_shift: wrong size of the list!\n");
+		return -3;
+	}
+	printf("PASS: test_shift\n");
+	return 0;
 }
