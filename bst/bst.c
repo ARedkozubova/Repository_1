@@ -22,14 +22,14 @@ pedge new_tree(void)
 	root->left = NULL;
 	root->right = NULL;
 	root->key = NULL;
-	root->value = NULL;
+	root->value = 0.0;
 	return root;
 }
 
 /*
 * Insert new edge into tree
 */
-int add_edge(pedge root, int key, int value)
+int add_edge(pedge root, int key, double value)
 {
 	pedge new_edge = new_tree();
 	new_edge->key = key;
@@ -39,7 +39,7 @@ int add_edge(pedge root, int key, int value)
 		printf("ERROR: failed allocation of memory for new element!\n");
 		return -1;
 	}
-	if (NULL == root->key && NULL == root->value)
+	if (NULL == root->key && 0.0 == root->value)
 	{
 		root->key = key;
 		root->value = value;
@@ -58,4 +58,31 @@ int add_edge(pedge root, int key, int value)
 	else
 		current->right = new_edge;
 	return 0;
+}
+
+/*
+* Delete tree
+*/
+void delete_tree(pedge tree)
+{
+	if (NULL != tree)
+	{
+		delete_tree(tree->left);
+		delete_tree(tree->right);
+		free(tree);
+	}
+}
+
+/*
+* Depth first search
+*/
+double dfs(pedge root)
+{
+	if (NULL != root)
+	{
+		dfs(root->left);
+		printf("%lf ", root->value);
+		dfs(root->right);
+		return root->value;
+	}
 }
