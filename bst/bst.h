@@ -24,3 +24,10 @@ struct edge
  * Returns pointer to the
  */
 pedge new_tree(void);
+
+/*
+* Insert a piar (key, value) into tree
+* Params: tree - pointer to the root, key - integer number, value - integer number
+* Return: 0 if inserting was successful, -1 if inserting was unsuccessful
+*/
+int add_edge(pedge root, int key, int value);
