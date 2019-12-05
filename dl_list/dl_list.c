@@ -1,5 +1,5 @@
 /*
- * File: dl_list.c
+ * File: dl_list
  * Brief: Double linked list
  * Author: Kasapenko Natalya
  * Created on: 02.12.2019
@@ -12,14 +12,14 @@
 
 List* list_new()
 {
-	List *NewList = (List*)malloc(sizeof(List));
+	List* NewList = (List*)malloc(sizeof(List));
 	NewList->size = 0;
 	NewList->head= NULL;
 	NewList->tail = NULL;
 	return NewList;
 }
 
-void list_delete(List *list)
+ list_delete(List *list)
 {
 	Node* current = list->head;
 	Node* next = NULL;
@@ -28,14 +28,17 @@ void list_delete(List *list)
 		free(current);
 		current = next;
 	}
-	free(*list);
-	list = NULL;
+	list->head = NULL;
+	list->tail = NULL;
+	list->size = 0;
+	free(list);
+	return 0;
 }
-
 
 int unshift(List* list, int value)
 {
 	Node* NewNode = (Node*)malloc(sizeof(Node));
+	Node* NextNewNode = (Node*)malloc(sizeof(Node));
 
 	if (NULL == NewNode) 
 	{
@@ -44,53 +47,54 @@ int unshift(List* list, int value)
 	}
 
 	NewNode->value = value;
-	NewNode->prev = NULL;
-	NewNode->next = list->head;
 
-	if (NULL != list -> head) 
+	if (NULL != list ->head)
 	{
+		NewNode->prev = NULL;
+		NewNode->next = list->head;
+		NextNewNode = list->head;
+		NextNewNode->prev = NewNode;
 		list->head = NewNode;
+		list->size++;
 	}
 
-	if (NULL == list->tail)
+	else
 	{
+		NewNode->prev = NULL;
+		NewNode->next = NULL;
+		list->head = NewNode;
 		list->tail = NewNode;
+		list->size = 1;
 	}
-
-	list->size++;
-
 	return 0;
 }
 
 int shift(List* list, int* pointer)
 {
-
-	if (NULL != list)
+	if (NULL != list->head)
 	{
-		Node* N = (Node*)malloc(sizeof(Node));
-		N = list->head;
-		pointer = N->value;
+		Node* FirstNode = list->head;
+		*pointer = (int)(FirstNode->value);
 		return 0;
 	}
 	else
 	{
-		printf("list doesn't exist");
+		printf("First element doesn't exist");
 		return 1;
 	}
 }
 
 int pop(List* list, int* pointer)
 {
-	if (NULL != list)
+	if (NULL != list->tail)
 	{
-		Node* N = (Node*)malloc(sizeof(Node));
-		N = list->tail;
-		pointer = N->value;
+		Node* LastNode = list->tail;
+		*pointer = (int)(LastNode->value);
 		return 0;
 	}
 	else
 	{
-		printf("list doesn't exist");
+		printf("Last element doesn't exist");
 		return 1;
 	}
 } 
@@ -98,28 +102,82 @@ int pop(List* list, int* pointer)
 int push(List* list, int value)
 {
 	Node* NewNode = (Node*)malloc(sizeof(Node));
-	Node* Element;
+	Node* PrevNewNode = (Node*)malloc(sizeof(Node));
 
 	if (NULL == NewNode)
 	{
 		printf("Error: Can't allocate memory");
 		exit(1);
 	}
+
 	NewNode->value = value;
-	NewNode->next = NULL;
-	NewNode->prev = list->tail;
 
 	if (NULL != list->tail)
 	{
-		Element = list->tail;
-		Element->next = NewNode;
+		NewNode->next = NULL;
+		NewNode->prev = list->tail;
+		PrevNewNode = list->tail;
+		PrevNewNode->next = NewNode;
+		list->tail = NewNode;
+		list->size++;		
 	}
-	if (NULL == list->head)
+	else
 	{
 		list->head = NewNode;
+		list->tail = NewNode;
+		list->size = 1;
+		NewNode->next = NULL;
+		NewNode->prev = NULL;
 	}
 
 	return 0;
+}
+
+void print(List* list)
+{
+	Node* current = NULL;
+
+	if (NULL != list->head)
+	{
+		current = list->head;
+	}
+	else
+	{
+		printf("List is empty");
+	}
+
+	while (NULL != current)
+	{
+		if (current->value == NULL)
+		{
+			printf("Error: value = NULL");
+		}
+		else
+		{
+			printf("%d ", current->value);
+		}
+		current = current->next;
+	}
+}
+
+void reverseprint(List* list)
+{
+	Node* current = NULL;
+
+	if (NULL != list->tail)
+	{
+		current = list->tail;
+	}
+	else
+	{
+		printf("List is empty");
+	}
+
+	while (NULL != current)
+	{
+		printf("%d ", current->value);
+		current = current->prev;
+	}
 }
 
 void reverse(List* list)
