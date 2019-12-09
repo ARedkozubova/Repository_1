@@ -43,6 +43,14 @@ void delete_tree(pedge tree);
 /*
 * Depth first search (print the elements)
 * Params: tree - pointer to the root
-* Returns: value of current element
+* Returns: value of current element (or -1.0 if the tree is empty)
 */
 double dfs(pedge root);
+
+
+/*
+* Width first search (print the elements)
+* Params: tree - pointer to the root
+* Returns: 0 if passing was successful, -1 if passing was unsuccessful
+*/
+double wfs(pedge root);
