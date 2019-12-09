@@ -5,18 +5,12 @@
  * (c) MIPT 2019
  */
 #include "sl_list.h"
+#include "task.h"
+#include <stdio.h>
+#include "sl_tests.h"
 
 int main()
 {
-
-	if (test1() == 0) printf("\ntest1:PASSED\n");
-	else printf("test1:FAILED");
-
-	if (test2() == 0) printf("\ntest2:PASSED\n");
-	else printf("test2:FAILED");
-
-	test3();
-	test4();
-
+	run_all_tests();
 	return 0;
 }
