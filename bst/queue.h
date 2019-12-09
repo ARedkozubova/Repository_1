@@ -8,12 +8,14 @@
  * (c) MIPT
 */
 
+#include "bst.h"
+
 typedef struct element *pelement;
 typedef struct queue *pqueue;
 
 struct element
 {
-	int value;
+	pedge edge;
 	pelement next;
 };
 
@@ -35,7 +37,7 @@ pqueue new_queue();
 * Params: queue - pointer to the queue, value - integer number
 * Return: 0 if inserting was successful, -1 if inserting was unsuccessful
 */
-int add_element (pqueue queue, int value);
+int add_element (pqueue queue, pedge edge);
 
 
 /*
@@ -43,7 +45,7 @@ int add_element (pqueue queue, int value);
 * Params: queue - pointer to the queue
 * Return: value of the first element if removing was successful, NULL if removing was unsuccessful
 */
-int pop_element(pqueue queue);
+pelement pop_element(pqueue queue);
 
 /*
 * Print the queue
