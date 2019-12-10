@@ -7,14 +7,17 @@
  * (c) MIPT
 */
 
-typedef struct _Node
+//typedef struct List* p_list;
+//typedef struct Node* p_node;
+
+typedef struct Node
 {
 	int value;
-	struct _Node* next;
-	struct _Node* prev;
+	struct Node* next;
+	struct Node* prev;
 } Node;
 
-typedef struct _List
+typedef struct List
 {
 	int size;
 	struct Node* head;
@@ -99,3 +102,4 @@ void reverseprint(List* list);
 * returning values: none
 */
 void reverse(List* list);
+
