@@ -63,7 +63,7 @@ int test_push()
 {
 	List *list;
 	int i = 0, count = 0, flag = 1;
-	list = list_new;
+	list = list_new();
 	fill_list(list, 20);
 	for (i = 0; i < 20; i++)
 	{
@@ -88,7 +88,7 @@ int test_push()
 
 int test_delete()
 {
-	List *list1 = list_new, *list2 = list_new;
+	List *list1 = list_new(), *list2 = list_new();
 	fill_list(list1, 20);
 	list_delete(list1);
 	list_delete(list2);
@@ -97,7 +97,7 @@ int test_delete()
 
 int test_pop()
 {
-	List *list = list_new;
+	List *list = list_new();
 	int *pointer = NULL, size = 0;
 	pop(list, pointer);
 	if (pointer != NULL)
@@ -135,7 +135,7 @@ int test_pop()
 
 int test_unshift()
 {
-	List *list = list_new;
+	List *list = list_new();
 	unshift(list, 15);
 	if (list->head->value != 15)
 	{
@@ -166,7 +166,7 @@ int test_unshift()
 
 int test_shift()
 {
-	List *list = list_new;
+	List *list = list_new();
 	int *pointer = NULL;
 	if (!shift(list, pointer))
 	{
@@ -193,7 +193,7 @@ int test_shift()
 
 int test_print()
 {
-	List *list = list_new;
+	List *list = list_new();
 	fill_list(list, 25);
 	//print(list);
 	printf("FAIL: test_print\n");
@@ -202,7 +202,7 @@ int test_print()
 
 int test_reverse_print()
 {
-	List *list = list_new;
+	List *list = list_new();
 	fill_list(list, 25);
 	//reverseprint(list);
 	printf("FAIL: test_reverse_print\n");
@@ -211,7 +211,7 @@ int test_reverse_print()
 
 int test_reverse()
 {
-	List *list = list_new, *list_check = list_new;
+	List *list = list_new(), *list_check = list_new();
 	reverse(list);
 	if (list != NULL)
 	{
