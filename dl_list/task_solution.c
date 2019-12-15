@@ -6,6 +6,11 @@
 	List *list = list_new();
 	int current, *bracket = NULL;
 	int i = 0, n = strlen(sequence);
+	if (n % 2 != 0)
+	{
+		printf("Sequence of brackets is not correct!\n");
+		return -1;
+	}
 	for (i = 0; i < n; i++)
 	{
 		if (sequence[i] != '{' || sequence[i] != '(' || sequence[i] != '}' || sequence[i] != '}')
@@ -23,6 +28,11 @@
 		}
 		if (sequence[i] == '}' || sequence[i] == ')')
 		{
+			if(list->size == 0)
+			{
+				printf("Sequence of brackets is not correct!\n");
+				return -1;
+			}
 			pop(list, bracket);
 			if ((sequence[i] == '}') && (*(bracket) != 1))
 			{
@@ -35,7 +45,11 @@
 				return -1;
 			}
 		}
-
+		if (list->size != 0)
+		{
+			printf("Sequence of brackets is not correct!\n");
+			return -1;
+		}
 	}
 	printf("The sequence of brackets is correct))\n");
 	return 0;
