@@ -15,6 +15,7 @@ int test1();
 					1 if found an error
 */
 int test2();
+int test5();
 
 /*
 * test3() 
@@ -31,20 +32,21 @@ int test3();
 					1 if found an error
 */
 int test4();
+int test6();
 
 /*
 * test5()
 * checks work of function list_delete();
 * returning values: none (as function list_delete() returns void)
 */
-void test5();
+void test7();
 
 /*
 * test6() 
 * checks workk of function print()
 * returning values: none (as function print() returns void)
 */
-void test6();
+void test8();
 
 /*
 Additional function slist_find(pslist list, int value)
