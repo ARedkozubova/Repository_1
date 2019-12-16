@@ -1,16 +1,16 @@
 /*
- * This file is bst.c
- * Binary search tree implementation
- *
- */
+* This file is bst.c
+* Binary search tree implementation
+*
+*/
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "bst.h"
 #include "queue.h"
- /*
-  * Creates an empty tree
-  */
+/*
+* Creates an empty tree
+*/
 pedge new_tree(void)
 {
 	pedge root = malloc(sizeof(struct edge));
@@ -31,13 +31,18 @@ pedge new_tree(void)
 */
 int add_edge(pedge root, int key, double value)
 {
+	if (NULL == root)
+	{
+		printf("ERROR: root of tree is NULL!\n");
+		return -1;
+	}
 	pedge new_edge = new_tree();
 	new_edge->key = key;
 	new_edge->value = value;
 	if (NULL == new_edge)
 	{
 		printf("ERROR: failed allocation of memory for new element!\n");
-		return -1;
+		return -2;
 	}
 	if (NULL == root->key && 0.0 == root->value)
 	{
