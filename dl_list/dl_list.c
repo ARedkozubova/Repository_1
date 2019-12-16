@@ -152,7 +152,6 @@ int push(List* list, int value)
 	{
 		NewNode->next = NULL;
 		NewNode->prev = list->tail;
-		printf("%f", list->tail->value);
 		PrevNewNode = list->tail;
 		PrevNewNode->next = NewNode;
 		list->tail = NewNode;
