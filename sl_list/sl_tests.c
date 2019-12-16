@@ -93,7 +93,7 @@ int test4()
 } 
 
 
-void test5()
+void test7()
 {
 	pslist list;
 
@@ -111,7 +111,7 @@ void test5()
 }
 
 
-void test6()
+void test8()
 {
 	pslist list;
 	list = slist_new();
@@ -119,6 +119,23 @@ void test6()
 	slist_insert(list, 2);
 	slist_insert(list, 3);
 	slist_print(list);
+}
+
+// net proverki na null
+int test5()
+{
+	if (slist_insert(NULL, 20) == -1)
+		return 0;
+	else
+		return 1;
+}
+
+int test6()
+{
+	if (slist_remove(NULL, 20) == -1)
+		return 0;
+	else
+		return 1;
 }
 
 int slist_find(pslist list, int value)
@@ -145,13 +162,16 @@ void run_all_tests()
 	A[1] = test2();
 	A[2] = test3();
 	A[3] = test4();
+	A[4] = test5();
+	A[5] = test6();
 	int i = 0;
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 6; i++)
 	{
 		if (A[i] == 0) printf("test%d: COMPLETED!\n", i + 1);
 		else printf("test%d: FAILED!\n", i + 1);
 	}
-	printf("test5: COMPLETED!\n");
-	printf("test6:COMPLETED!\n");
+	printf("test7: PASSED!");
+	printf("test8: PASSED!");
 }
+
 
