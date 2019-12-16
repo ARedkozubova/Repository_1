@@ -1,14 +1,14 @@
 /*
- * This file is slist.c
- * Single linked list implementation
- *
- */
+* This file is slist.c
+* Single linked list implementation
+*
+*/
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "sl_list.h"
 
- /* Create new empty list */
+/* Create new empty list */
 pslist slist_new(void)
 {
 	pslist list = malloc(sizeof(struct slist));
@@ -38,14 +38,19 @@ void slist_delete(pslist list)
 }
 
 /* Allocate the element
-   Put at the end */
+Put at the end */
 int slist_insert(pslist list, int value)
 {
+	if (NULL == list)
+	{
+		printf("ERROR: pointer to the list is NULL!\n");
+		return -1;
+	}
 	pslist_entry pnew = malloc(sizeof(struct slist_entry));
 	if (NULL == pnew)
 	{
 		printf("ERROR: failed allocation of memory for new element!\n");
-		return -1;
+		return -2;
 	}
 	pnew->next = list->head;
 	pnew->value = value;
@@ -58,12 +63,17 @@ int slist_insert(pslist list, int value)
 /* Go through the list, remove if value is equal */
 int slist_remove(pslist list, int value)
 {
+	if (NULL == list)
+	{
+		printf("ERROR: pointer to the list is NULL!\n");
+		return -1;
+	}
 	pslist_entry current = list->head;
 	pslist_entry prev = list->head;
 	if (NULL == current)
 	{
 		printf("ERROR: removing element from empty list!\n");
-		return -1;
+		return -2;
 	}
 
 	while (NULL != current)
