@@ -25,8 +25,8 @@ int find_element(List *list, int value)
 
 void fill_list(List *list, int number)
 {
-	int i = 0;
-	for (i = 0; i < number; i++)
+	int i = 1;
+	for (i = 1; i <= number; i++)
 	{
 		push(list, i);
 	}
@@ -195,8 +195,8 @@ int test_print()
 {
 	List *list = list_new();
 	fill_list(list, 25);
-	//print(list);
-	printf("FAIL: test_print\n");
+	print(list);
+	printf("PASS: test_print\n");
 	return 0;
 }
 
@@ -204,8 +204,8 @@ int test_reverse_print()
 {
 	List *list = list_new();
 	fill_list(list, 25);
-	//reverseprint(list);
-	printf("FAIL: test_reverse_print\n");
+	reverseprint(list);
+	printf("PASS: test_reverse_print\n");
 	return 0;
 }
 
