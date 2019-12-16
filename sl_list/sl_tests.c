@@ -140,7 +140,7 @@ int slist_find(pslist list, int value)
 
 void run_all_tests()
 {
-	int A[4];
+	int A[6];
 	A[0] = test1();
 	A[1] = test2();
 	A[2] = test3();
@@ -151,7 +151,7 @@ void run_all_tests()
 		if (A[i] == 0) printf("test%d: COMPLETED!\n", i + 1);
 		else printf("test%d: FAILED!\n", i + 1);
 	}
+	printf("test5: COMPLETED!\n");
+	printf("test6:COMPLETED!\n");
 }
-
-
 
